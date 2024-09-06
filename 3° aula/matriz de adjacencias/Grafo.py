@@ -5,7 +5,7 @@ class Grafo:
         self.grafo = [[0] * self.vertices for i in range(vertices)]
 
     # adiciona à matriz se origem e destino positivos.
-    def adicionarAresta(self, origem: int, destino: int, peso: int = 1):
+    def adicionar(self, origem: int, destino: int, peso: int = 1):
         self.grafo[origem-1][destino-1] = 1 * peso
         if not self.direcional:
             self.grafo[destino-1][origem-1] = 1 * peso
