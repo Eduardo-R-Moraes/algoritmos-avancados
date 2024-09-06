@@ -36,9 +36,11 @@ def pegar_destino():
 def pegar_peso():
     while True:
         try:
-            peso = int(input('Peso da aresta (se não tiver pressione <ENTER>): '))
+            peso = int(input('Peso da aresta (se não tiver pressione 0): '))
             if peso > 0:
                 return peso
             print()
+            if peso == 0:
+                return 1
         except ValueError:
             print()

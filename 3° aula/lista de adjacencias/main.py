@@ -1,10 +1,10 @@
 from tratamento_erros import pegar_vertice, pegar_destino, pegar_origem, pegar_peso
 from Grafo import Grafo
 
-# números de vértices precentes no grafo
+# números de vértices presentes no grafo
 vertices = pegar_vertice()
 
-# grafo direcionado ou não
+# define se o grafo é direcionado ou não
 direcionado = input('\nÉ direcionado (sim ou nao): ')
 
 # repete até receber a resposta 'sim' ou 'não'
