@@ -4,7 +4,7 @@ class No:
         self.esquerda = None
         self.direita = None
 
-    def getValor(self) -> int:
+    def getValor(self):
         return self.valor
     
     def getEsquerda(self):
