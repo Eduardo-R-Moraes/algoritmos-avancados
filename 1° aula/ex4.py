@@ -6,6 +6,7 @@ def mediaVetor(n):
     vetor = []
     soma = 0
 
+    # Preenchendo o vetor
     for i in range(n):
         vetor[i] = int(input(f'Nota {i}: '))
 
