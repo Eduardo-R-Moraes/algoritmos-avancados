@@ -9,23 +9,34 @@ class Grafo:
         # Resultado da última busca em largura
         self.visitadosLargura = []
 
-    def adicionar(self, origem: int, destino: int):
-        self.grafo[origem - 1].append(destino)
-        if not self.direcional:
-            self.grafo[destino - 1].append(origem)
+    def adicionar(self, origem, final):
+        if final not in self.grafo[origem - 1]:
+            self.grafo[origem - 1].append(final)
+        if origem not in self.grafo[final - 1]:
+            self.grafo[final - 1].append(origem)
 
     def mostrar(self):
-        print('Lista de adjacência: ')
+        print('\nLista de adjacência: ')
         if self.vertices == 0:
             print('Zero vértices.')
         else:
             for i in range(self.vertices):
                 print(f'{i + 1} -> {self.grafo[i]}')
+
+    def getBuscaProfundidade(self, vertice):
+        self.visitadosProfundidade.clear()
+        self.buscaProfundidade(vertice)
+        return self.visitadosProfundidade
+        
+    def getBuscaLargura(self, vertice):
+        self.visitadosLargura.clear()
+        self.buscaLargura(vertice)
+        return self.visitadosLargura
     
     def verticesAdj(self, vertice):
         adj = []
-        for i in range(1, len(self.grafo[vertice])):
-            adj.append(self.grafo[vertice][i])
+        for i in range(len(self.grafo[vertice-1])):
+            adj.append(self.grafo[vertice-1][i])
 
         return adj
 
@@ -36,7 +47,7 @@ class Grafo:
         self.visitadosProfundidade.append(vertice)
         for verticeAdjacente in self.verticesAdj(vertice):
             if verticeAdjacente not in self.visitadosProfundidade:
-                return self.buscaProfundidade(verticeAdjacente, self.visitadosProfundidade)
+                return self.buscaProfundidade(verticeAdjacente)
             
     def buscaLargura(self, vertice):
         fila = [vertice]
@@ -49,5 +60,3 @@ class Grafo:
                 if not verticeAdjacente in self.visitadosLargura:
                     fila.append(verticeAdjacente)
                     self.visitadosLargura.append(verticeAdjacente)
-
-
