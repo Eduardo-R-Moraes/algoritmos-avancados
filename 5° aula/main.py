@@ -8,11 +8,7 @@ vertices = int(input('Digite um número inteiro positivo para o vértice: '))
 grafo = Grafo(vertices)
 
 # gera o grafo de forma aleatória
-for i in range(len(grafo.grafo)):
-    for j in range(vertices - 1):
-        num = randint(0, vertices - 1)
-        if num != 0 and num != i:
-            grafo.adicionar(i + 1, num + 1) 
+grafo.gerarGrafo()
 
 while True:
     # escolhe a ação a fazer com o grafo

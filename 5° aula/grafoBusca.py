@@ -1,3 +1,5 @@
+from random import randint
+
 class Grafo:
     def __init__(self, vertices: int = 0):
         self.vertices = vertices
@@ -8,6 +10,13 @@ class Grafo:
 
         # Resultado da última busca em largura
         self.visitadosLargura = []
+
+    def gerarGrafo(self):
+        for i in range(len(self.grafo)):
+            for j in range(self.vertices - 1):
+                num = randint(0, self.vertices - 1)
+                if num != 0 and num != i:
+                    self.adicionar(i + 1, num + 1) 
 
     def adicionar(self, origem, final):
         if final not in self.grafo[origem - 1]:
