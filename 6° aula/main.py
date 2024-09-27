@@ -1,3 +1,6 @@
+def adicionar(arvore, inicial, final, peso):
+    arvore[inicial].append([final, peso])
+
 def verticeAdj(grafo, vertice):
     vertices = []
     for i in range(1, len(grafo[vertice])):
@@ -38,6 +41,9 @@ def menorCaminho(grafo, inicial):
 
     return distancias
 
+print('Menor caminho com aresta sem peso: ', end='')
+print(menorCaminho(grafo, grafo[2][0]))
+
 grafo_naodirecionado = [
     [[0, 0], [1, 5], [2, 6], [3, 10]],
     [[1, 0], [4, 13], [0, 5]],
@@ -48,7 +54,7 @@ grafo_naodirecionado = [
     [[6, 0], [4, 3], [5, 8]]
 ]
 
-def dijkstra(grafo, inicial, final = None):
+def dijkstra(grafo:list, inicial:int, final:int = None):
     distancias = [9999] * len(grafo)
     anterior = [None] * len(grafo)
     
@@ -78,7 +84,24 @@ def dijkstra(grafo, inicial, final = None):
         fechados.append(v)
         abertos.remove(v)
 
-    return distancias
+    return distancias, anterior
 
-distancias = dijkstra(grafo_naodirecionado, 0, 6)
-print(distancias)
+distancias, anterior = dijkstra(grafo_naodirecionado, 0, 6)
+
+print(f'\nMenor caminho com pesos: {distancias}')
+
+arvore = [[] for i in range(len(distancias))]
+
+for i in range(len(distancias)):
+    if anterior[i] == None:
+        continue
+    else:
+        adicionar(arvore, anterior[i], i, distancias[i])
+
+print('\nno_pai -> no_filho1:distancia_acumulada, no_filho2:distancia_acumulada')
+for i, vertice in enumerate(arvore):
+    if vertice != []:
+        print(f'{i} -> ', end='')
+        for j in range(len(vertice)):
+            print(f'{vertice[j][0]}:{vertice[j][1]}', end=' ')
+        print()
