@@ -1,5 +1,3 @@
-import time
-
 class Fibonacci:
     def __init__(self):
         self.fibonacci = [0, 1]
